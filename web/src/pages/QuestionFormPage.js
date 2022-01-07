@@ -71,7 +71,6 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail }) => {
 
                     </select>
                 </div>
-
                 <div>
                     <label for="question">Question</label>
                     <textarea id="question" {...register("question", { required: true, maxLength: 300 })} /> //Agregar funcionalidad texto enriquecido

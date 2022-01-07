@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom'
 export const PublicNavbar = () => (
   <nav>
     <section>
-      <Link to="/">Home</Link>
-      <Link to="/questions">Questions</Link>
+      <div className="nav-wrapper">
+        <a href="#" className="brand-logo"><img src="LogoSofkaOverFlow.png" alt="logo" width="150px" /></a>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <li><Link to="/" className='grey-text text-lighten-3 bi-house-door-fill'></Link></li>
+          <li><Link to="/questions">Questions</Link></li>
+        </ul>
+      </div>
     </section>
   </nav>
 )
@@ -13,10 +18,15 @@ export const PublicNavbar = () => (
 export const PrivateNavbar = () => (
   <nav>
     <section>
-      <Link to="/">Home</Link>
-      <Link to="/questions">Questions</Link>
-      <Link to="/new">New</Link>
-      <Link to="/list">List</Link>
+      <div className="nav-wrapper">
+        <a href="#" className="brand-logo"><img src="LogoSofkaOverFlow.png" alt="logo" width="150px" /></a>
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <li><Link to="/" className='grey-text text-lighten-3 bi-house-door-fill'></Link></li>
+          <li><Link to="/questions">Questions</Link></li>
+          <li><Link to="/new">New</Link></li>
+          <li><Link to="/list">List</Link></li>
+        </ul>
+      </div>
     </section>
   </nav>
 )
