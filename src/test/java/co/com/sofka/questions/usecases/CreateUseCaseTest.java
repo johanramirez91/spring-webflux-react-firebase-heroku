@@ -47,5 +47,7 @@ class CreateUseCaseTest {
         var response = createUseCase.apply(questionDto);
 
         Assertions.assertEquals(Objects.requireNonNull(response.block()), "123");
+
+        Mockito.verify(repository).save(Mockito.any());
     }
 }

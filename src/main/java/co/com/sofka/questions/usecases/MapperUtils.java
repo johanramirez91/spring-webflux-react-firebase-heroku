@@ -31,9 +31,9 @@ public class MapperUtils {
             question.setQuestion(updateQuestion.getQuestion());
             question.setUserId(updateQuestion.getUserId());
             question.setType(updateQuestion.getType());
+            question.setSumReviewsScores(updateQuestion.getSumReviewScores());
             question.setNumOfReviews(updateQuestion.getNumOfReviews());
             question.setUserReviews(updateQuestion.getUserReviews());
-            question.setSumReviewsScores(updateQuestion.getSumReviewsScores());
             question.setUserEmail(updateQuestion.getUserEmail());
             return question;
         };

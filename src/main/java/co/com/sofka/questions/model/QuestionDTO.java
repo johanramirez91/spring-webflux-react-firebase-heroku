@@ -1,6 +1,5 @@
 package co.com.sofka.questions.model;
 
-
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +7,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class QuestionDTO {
+
     private String id;
     @NotBlank
     private String userId;
-    @NotBlank
-    private String userEmail;
     @NotBlank
     private String question;
     @NotBlank
@@ -21,8 +19,9 @@ public class QuestionDTO {
     private String category;
     private List<AnswerDTO> answers;
     private Integer numOfReviews = 0;
-    private Integer sumReviewsScores = 0;
+    private Integer sumReviewScores = 0;
     private List<String> userReviews = new ArrayList<>();
+    private String userEmail;
 
 
     public QuestionDTO() {
@@ -38,14 +37,14 @@ public class QuestionDTO {
     }
 
     public QuestionDTO(String id, String userId, String question, String type, String category,
-                       Integer numberOfReviews, Integer sumOfReviewScores, List<String> userReviews, String userEmail) {
+                       Integer numOfReviews, Integer sumReviewScores, List<String> userReviews, String userEmail) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
-        this.numOfReviews = numberOfReviews;
-        this.sumReviewsScores = sumOfReviewScores;
+        this.numOfReviews = numOfReviews;
+        this.sumReviewScores = sumReviewScores;
         this.userReviews = userReviews;
         this.userEmail = userEmail;
     }
@@ -64,14 +63,6 @@ public class QuestionDTO {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
     }
 
     public String getQuestion() {
@@ -99,6 +90,7 @@ public class QuestionDTO {
     }
 
     public List<AnswerDTO> getAnswers() {
+        this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
         return answers;
     }
 
@@ -114,12 +106,12 @@ public class QuestionDTO {
         this.numOfReviews = numOfReviews;
     }
 
-    public Integer getSumReviewsScores() {
-        return sumReviewsScores;
+    public Integer getSumReviewScores() {
+        return sumReviewScores;
     }
 
-    public void setSumReviewsScores(Integer sumReviewsScores) {
-        this.sumReviewsScores = sumReviewsScores;
+    public void setSumReviewScores(Integer sumReviewScores) {
+        this.sumReviewScores = sumReviewScores;
     }
 
     public List<String> getUserReviews() {
@@ -130,6 +122,14 @@ public class QuestionDTO {
         this.userReviews = userReviews;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     @Override
     public String toString() {
         return "QuestionDTO{" +
@@ -138,6 +138,11 @@ public class QuestionDTO {
                 ", question='" + question + '\'' +
                 ", type='" + type + '\'' +
                 ", category='" + category + '\'' +
+                ", answers=" + answers +
+                ", numOfReviews=" + numOfReviews +
+                ", sumReviewScores=" + sumReviewScores +
+                ", userReviews=" + userReviews +
+                ", userEmail='" + userEmail + '\'' +
                 '}';
     }
 
