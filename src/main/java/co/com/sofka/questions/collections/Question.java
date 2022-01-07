@@ -3,16 +3,54 @@ package co.com.sofka.questions.collections;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Document
 public class Question {
     @Id
     private String id;
     private String userId;
+    private String userEmail;
     private String question;
     private String type;
     private String category;
+    private Integer numOfReviews = 0;
+    private Integer sumReviewsScores = 0;
+    private List<String> userReviews = new ArrayList<>();
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public Integer getNumOfReviews() {
+        return numOfReviews;
+    }
+
+    public void setNumOfReviews(Integer numOfReviews) {
+        this.numOfReviews = numOfReviews;
+    }
+
+    public Integer getSumReviewsScores() {
+        return sumReviewsScores;
+    }
+
+    public void setSumReviewsScores(Integer sumReviewsScores) {
+        this.sumReviewsScores = sumReviewsScores;
+    }
+
+    public List<String> getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(List<String> userReviews) {
+        this.userReviews = userReviews;
+    }
 
     public String getId() {
         return id;

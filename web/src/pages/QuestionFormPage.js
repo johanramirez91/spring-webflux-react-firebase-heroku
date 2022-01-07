@@ -1,17 +1,44 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { postQuestion } from '../actions/questionActions'
 import { connect } from 'react-redux'
 
-const FormPage = ({ dispatch, loading, redirect, userId }) => {
+const FormPage = ({ dispatch, loading, redirect, userId, useEmail }) => {
+
+    const [formState, setFormState] = useState({
+        type: 'OPEN (LONG OPEN BOX)',
+        category: 'TECHNOLOGY AND COMPUTER'
+    });
+
+    const [content, setContent] = useState('');
     const { register, handleSubmit } = useForm();
     const history = useHistory();
 
-    const onSubmit = data => {
-        data.userId = userId;
-        dispatch(postQuestion(data));
-    };
+    const onSubmit = event => {
+        event.preventDefault();
+        const data = {
+            ...formState,
+            userId,
+            question: content,
+            useEmail
+        }
+        validateInput(data) && dispatch(postQuestion(data));
+    }
+
+    const validateInput = ({ question }) => {
+        if (question.length && question.length <= 200) {
+            return true;
+        }
+        return false;
+    }
+
+    const handleInputChange = ({ target }) => {
+        setFormState({
+            ...formState,
+            [target.name]: target.value
+        });
+    }
 
     useEffect(() => {
         if (redirect) {
@@ -23,11 +50,10 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
         <section>
             <h1>New Question</h1>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-
+            <form onSubmit={onSubmit}>
                 <div>
                     <label for="type">Type</label>
-                    <select {...register("type")} id="">
+                    <select name="type" onChange={handleInputChange} id="type">
                         <option value="OPEN (LONG OPEN BOX)">OPEN (LONG OPEN BOX)</option>
                         <option value="OPINION (SHORT OPEN BOX)">OPINION (SHORT OPEN BOX)</option>
                         <option value="WITH RESULT (OPEN BOX WITH LINK)">WITH RESULT (OPEN BOX WITH LINK)</option>
@@ -36,7 +62,7 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
                 </div>
                 <div>
                     <label for="category">Category</label>
-                    <select {...register("category")} id="category">
+                    <select name="category" onChange={handleInputChange} id="category">
                         <option value="TECHNOLOGY AND COMPUTER">TECHNOLOGY AND COMPUTER</option>
                         <option value="SCIENCES">SCIENCES</option>
                         <option value="SOFTWARE DEVELOPMENT">SOFTWARE DEVELOPMENT</option>
@@ -48,12 +74,13 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
 
                 <div>
                     <label for="question">Question</label>
-                    <textarea id="question" {...register("question", { required: true, maxLength: 300 })} />
+                    <textarea id="question" {...register("question", { required: true, maxLength: 300 })} /> //Agregar funcionalidad texto enriquecido
                 </div>
                 <button type="submit" className="button" disabled={loading} >{
                     loading ? "Saving ...." : "Save"
                 }</button>
             </form>
+            //Agregar footer
         </section>
 
     );
@@ -63,7 +90,8 @@ const mapStateToProps = state => ({
     loading: state.question.loading,
     redirect: state.question.redirect,
     hasErrors: state.question.hasErrors,
-    userId: state.auth.uid
+    userId: state.auth.uid,
+    userEmail: state.auth.email
 })
 
 export default connect(mapStateToProps)(FormPage)

@@ -20,19 +20,20 @@ import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
 import { useAuthState } from "react-firebase-hooks/auth";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCTySyvuIDPg7RWF6ceuuwC2t3BEiAK38o",
-  authDomain: "question-app-demo.firebaseapp.com",
-  projectId: "question-app-demo",
-  storageBucket: "question-app-demo.appspot.com",
-  messagingSenderId: "1038673531562",
-  appId: "1:1038673531562:web:da90421f639a3115dcf6d3"
+  apiKey: "AIzaSyBMsrkT6oyWJIeAv73B02DmQdTYIGHSJgQ",
+  authDomain: "sofkaoverflow-2da70.firebaseapp.com",
+  projectId: "sofkaoverflow-2da70",
+  storageBucket: "sofkaoverflow-2da70.appspot.com",
+  messagingSenderId: "938870851828",
+  appId: "1:938870851828:web:eaee79e4235d8205a236a1",
+  measurementId: "G-DQ7NE079D9"
 });
 
 const auth = firebase.auth();
 
 const App = ({ dispatch }) => {
   const [user] = useAuthState(auth);
-  if(user){
+  if (user) {
     dispatch(login(user.email, user.uid))
   }
   return (

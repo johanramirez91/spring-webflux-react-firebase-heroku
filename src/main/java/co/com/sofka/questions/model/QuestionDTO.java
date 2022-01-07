@@ -12,40 +12,42 @@ public class QuestionDTO {
     @NotBlank
     private String userId;
     @NotBlank
+    private String userEmail;
+    @NotBlank
     private String question;
     @NotBlank
     private String type;
     @NotBlank
     private String category;
     private List<AnswerDTO> answers;
+    private Integer numOfReviews = 0;
+    private Integer sumReviewsScores = 0;
+    private List<String> userReviews = new ArrayList<>();
 
 
     public QuestionDTO() {
 
     }
 
-    public QuestionDTO(String userId, String question, String type, String category) {
+    public QuestionDTO(String userId, String question, String type, String category, String userEmail) {
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
+        this.userEmail = userEmail;
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category) {
+    public QuestionDTO(String id, String userId, String question, String type, String category,
+                       Integer numberOfReviews, Integer sumOfReviewScores, List<String> userReviews, String userEmail) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
-    }
-
-    public List<AnswerDTO> getAnswers() {
-        this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
-        return answers;
-    }
-
-    public void setAnswers(List<AnswerDTO> answers) {
-        this.answers = answers;
+        this.numOfReviews = numberOfReviews;
+        this.sumReviewsScores = sumOfReviewScores;
+        this.userReviews = userReviews;
+        this.userEmail = userEmail;
     }
 
     public String getId() {
@@ -62,6 +64,14 @@ public class QuestionDTO {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getQuestion() {
@@ -86,6 +96,38 @@ public class QuestionDTO {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<AnswerDTO> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<AnswerDTO> answers) {
+        this.answers = answers;
+    }
+
+    public Integer getNumOfReviews() {
+        return numOfReviews;
+    }
+
+    public void setNumOfReviews(Integer numOfReviews) {
+        this.numOfReviews = numOfReviews;
+    }
+
+    public Integer getSumReviewsScores() {
+        return sumReviewsScores;
+    }
+
+    public void setSumReviewsScores(Integer sumReviewsScores) {
+        this.sumReviewsScores = sumReviewsScores;
+    }
+
+    public List<String> getUserReviews() {
+        return userReviews;
+    }
+
+    public void setUserReviews(List<String> userReviews) {
+        this.userReviews = userReviews;
     }
 
     @Override
