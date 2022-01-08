@@ -87,7 +87,7 @@ const Login = ({ dispatch }) => {
                         />
                     </div>
                     <div className='justify-content-center'>
-                        <button type="submit" className="button-small mt-3 mb-3">Log in</button>
+                        <button type="submit" className="bi bi-box-arrow-in-right waves-effect indigo darken-2 white-text btn mt-3 mb-3"> Log in</button>
                         <br />
                         <button
                             type="button"

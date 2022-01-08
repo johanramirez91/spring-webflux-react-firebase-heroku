@@ -18,7 +18,7 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
 
     const onDelete = (id) => {
         swal({
-            title: "¿Eliminate?",
+            title: "¿Delete?",
             text: "¡Remember, when deleting, you will not be able to recover information!",
             icon: "warning",
             buttons: true,
@@ -48,6 +48,7 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
     return (
         <section>
             <h1>Questions</h1>
+            <hr />
             {renderQuestions()}
         </section>
     )

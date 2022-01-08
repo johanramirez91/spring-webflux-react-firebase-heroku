@@ -48,10 +48,11 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail }) => {
     return (
         <section>
             <h1>New Question</h1>
+            <hr />
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="type">Type</label>
-                    <select name="type" onChange={handleInputChange} id="type">
+                    <select className="browser-default" name="type" onChange={handleInputChange} id="type">
                         <option value="OPEN (LONG OPEN BOX)">OPEN (LONG OPEN BOX)</option>
                         <option value="OPINION (SHORT OPEN BOX)">OPINION (SHORT OPEN BOX)</option>
                         <option value="WITH RESULT (OPEN BOX WITH LINK)">WITH RESULT (OPEN BOX WITH LINK)</option>
@@ -60,7 +61,7 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail }) => {
                 </div>
                 <div>
                     <label htmlFor="category">Category</label>
-                    <select name="category" onChange={handleInputChange} id="category">
+                    <select className="browser-default" name="category" onChange={handleInputChange} id="category">
                         <option value="TECHNOLOGY AND COMPUTER">TECHNOLOGY AND COMPUTER</option>
                         <option value="SCIENCES">SCIENCES</option>
                         <option value="SOFTWARE DEVELOPMENT">SOFTWARE DEVELOPMENT</option>
@@ -72,9 +73,10 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail }) => {
                     <label htmlFor="question">Question</label>
                     <InputText id="question" setContent={setContent} />
                 </div>
-                <button type="submit" className="button" disabled={loading} >{
-                    loading ? "Saving ...." : "Save"
-                }</button>
+                <br />
+                <button type="submit" className="waves-effect orange darken-2 btn white-text" disabled={loading} >
+                    {loading ? "Saving ..." : "Save"}
+                </button>
             </form>
         </section>
     );

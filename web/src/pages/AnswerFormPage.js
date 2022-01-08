@@ -55,9 +55,10 @@ const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, use
                     <label htmlFor="answer">Answer</label>
                     <InputText id="answer" setContent={setContent} />
                 </div>
-                <button type="submit" className="button-small" disabled={loading} >{
-                    loading ? "Saving ...." : "Save"
-                }</button>
+                <br />
+                <button type="submit" className="waves-effect orange darken-2 btn white-text" disabled={loading} >
+                    {loading ? "Saving ...." : "Save"}
+                </button>
             </form>
         </section>
     );

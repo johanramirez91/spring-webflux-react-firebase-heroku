@@ -68,7 +68,7 @@ const Register = ({ dispatch }) => {
                         />
                     </div>
                     <div className='justify-content-center'>
-                        <button type="submit" className="button-small mt-3 mb-3">Register</button>
+                        <button type="submit" className="bi bi-pencil-square waves-effect indigo darken-2 white-text btn mt-3 mb-3"> Register</button>
                     </div>
                 </form>
             </div>

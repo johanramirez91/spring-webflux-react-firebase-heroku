@@ -26,10 +26,12 @@ import { Footer } from './components/Footer';
 const auth = firebase.auth();
 
 const App = ({ dispatch }) => {
+
   const [user] = useAuthState(auth);
   if (user) {
     dispatch(login(user.email, user.uid))
   }
+
   return (
     <Router>
       {user ?
@@ -83,13 +85,12 @@ function SignOut({ dispatch }) {
   return (
     auth.currentUser && (
       <button
-        className="button right"
+        className="btn waves-effect waves-light red darken-2 right bi bi-box-arrow-right white-text"
         onClick={() => {
           dispatch(logout())
           auth.signOut();
         }}
-      >
-        Sign out
+      >  Sign out
       </button>
     )
   );

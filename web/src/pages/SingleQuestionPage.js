@@ -23,8 +23,8 @@ const SingleQuestionPage = ({
 
   const onDelete = (id) => {
     swal({
-      title: "Are you shure that you want to delete the question?",
-      text: "If you press confirm the question will be deleted",
+      title: "Delete?",
+      text: "¡Remember, when deleting, you will not be able to recover information!",
       icon: "warning",
       buttons: ["Cancel", "Confirm"]
     }).then((isConfirmed) => {
@@ -55,7 +55,7 @@ const SingleQuestionPage = ({
   return (
     <section>
       {renderQuestion()}
-      {userId && <Link to={"/answer/" + id} className="button right">
+      {userId && <Link to={"/answer/" + id} className="waves-effect orange darken-2 btn white-text right">
         Reply
       </Link>}
 
