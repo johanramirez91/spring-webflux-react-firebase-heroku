@@ -14,13 +14,16 @@ export const success = payload => ({
 export const failure = () => ({ type: LOADED_FAILURE })
 
 export function fetchQuestions() {
+    //función anonima
     return async dispatch => {
+        //se envías el type loading al reducer
         dispatch(loading())
         try {
             const response = await fetch(
                 `${URL_BASE}/getAll`
             )
             const data = await response.json()
+            //actualiza el store
             dispatch(success({ questions: data, redirect: null }))
         } catch (error) {
             dispatch(failure())
@@ -28,6 +31,7 @@ export function fetchQuestions() {
     }
 }
 
+//Trae las preguntas de un usaurio logueado
 export function fetchOwnerQuestions(userId) {
     return async dispatch => {
         dispatch(loading())
@@ -41,6 +45,7 @@ export function fetchOwnerQuestions(userId) {
     }
 }
 
+//Traer un sola pregunta
 export function fetchQuestion(id) {
     return async dispatch => {
         dispatch(loading())
@@ -69,7 +74,7 @@ export function postQuestion(question) {
                 }
             )
             const id = await response.text()
-            dispatch(success({redirect: `/question/${id}`}));
+            dispatch(success({ redirect: `/question/${id}` }));
         } catch (error) {
             dispatch(failure())
         }
@@ -89,7 +94,7 @@ export function deleteQuestion(id) {
                     }
                 }
             )
-            dispatch(success({redirect: `/list`}));
+            dispatch(success({ redirect: `/list` }));
         } catch (error) {
             dispatch(failure())
         }
@@ -110,7 +115,27 @@ export function postAnswer(answer) {
                     body: JSON.stringify(answer)
                 }
             )
-            dispatch(success({redirect: `/question/${answer.questionId}`}));
+            dispatch(success({ redirect: `/question/${answer.questionId}` }));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
+export function deleteAnswer(id) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            await fetch(`${URL_BASE}/deleteAnswer/${id}`,
+                {
+                    method: 'DELETE',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
+            dispatch(success({ redirect: `/question/${id}` }));
         } catch (error) {
             dispatch(failure())
         }

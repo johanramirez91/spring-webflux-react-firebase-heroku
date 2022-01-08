@@ -5,9 +5,9 @@ export const Question = ({ question, excerpt, onDelete }) => (
   <article className={excerpt ? 'question-excerpt' : 'question'}>
     <h2>{question.question}</h2>
     <p>{question.category}  - <small>{question.type}</small></p>
-   
+
     {onDelete && (
-      <button className="button right" onClick={() => onDelete(question.id)}>DELETE</button>
+      <button className='waves-effect red darken-2 btn-small' onClick={() => onDelete(question.id)}>Delete</button>
     )}
     {excerpt && (
       <Link to={`/question/${question.id}`} className="button">
