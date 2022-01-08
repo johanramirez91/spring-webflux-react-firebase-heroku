@@ -5,6 +5,7 @@ import { fetchOwnerQuestions, deleteQuestion } from '../actions/questionActions'
 import { Question } from '../components/Question'
 
 const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId }) => {
+
     useEffect(() => {
         dispatch(fetchOwnerQuestions(userId))
     }, [dispatch, userId]);
@@ -17,22 +18,21 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
 
     const onDelete = (id) => {
         swal({
-            title: "¿Eliminar?",
-            text: "¡Recuerda, al eliminar no podrás recuperar información!",
+            title: "¿Eliminate?",
+            text: "¡Remember, when deleting, you will not be able to recover information!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
-        })
-            .then((eliminar) => {
-                if (eliminar) {
-                    swal("¡Se ha eliminado!", {
-                        icon: "success",
-                    });
-                    dispatch(deleteQuestion(id))
-                } else {
-                    swal("uff!, que bueno que preguntamos");
-                }
-            });
+        }).then((eliminar) => {
+            if (eliminar) {
+                swal("¡Eliminated!", {
+                    icon: "success",
+                });
+                dispatch(deleteQuestion(id))
+            } else {
+                swal("uff!, good thing we asked");
+            }
+        });
     }
 
     const renderQuestions = () => {

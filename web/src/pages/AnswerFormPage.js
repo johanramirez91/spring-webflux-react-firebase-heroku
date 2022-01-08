@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { fetchQuestion, postAnswer } from '../actions/questionActions'
-import { connect } from 'react-redux'
-import { Question } from '../components/Question'
+import { fetchQuestion, postAnswer } from '../actions/questionActions';
+import { connect } from 'react-redux';
+import { Question } from '../components/Question';
+import { InputText } from "../components/InputText";
 
 const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, userId }) => {
 
@@ -47,18 +48,18 @@ const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, use
     return (
         <section>
             {renderQuestion()}
-            <h1>New Answer</h1>
-
+            <h3>New Answer</h3>
+            <hr />
             <form onSubmit={onSubmit}>
                 <div>
-                    <label for="answer">Answer</label>
+                    <label htmlFor="answer">Answer</label>
+                    <InputText id="answer" setContent={setContent} />
                 </div>
-                <button type="submit" className="button" disabled={loading} >{
+                <button type="submit" className="button-small" disabled={loading} >{
                     loading ? "Saving ...." : "Save"
                 }</button>
             </form>
         </section>
-
     );
 }
 

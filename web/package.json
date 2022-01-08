@@ -7,6 +7,8 @@
     "dependencies": {
         "bootstrap-icons": "^1.7.2",
         "firebase": "^8.3.3",
+        "jodit": "^3.12.4",
+        "jodit-react": "^1.1.17",
         "react": "16.12.0",
         "react-dom": "16.12.0",
         "react-firebase-hooks": "^3.0.3",

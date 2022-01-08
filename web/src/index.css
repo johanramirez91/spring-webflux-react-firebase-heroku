@@ -158,5 +158,10 @@ footer {
 }
 
 .container {
-  height: 90px;
+  height: 70px;
+}
+
+.container-image img {
+  width: 300px;
+  padding: 30px;
 }
