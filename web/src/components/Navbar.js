@@ -5,10 +5,11 @@ export const PublicNavbar = () => (
   <nav>
     <section>
       <div className="nav-wrapper">
-        <a href="#" className="brand-logo"><img src="LogoSofkaOverFlow.png" alt="logo" width="150px" /></a>
+        <a href="#"><img src="LogoSofkaOverFlow.png" alt="logo" width="110px" /></a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to="/" className='grey-text text-lighten-3 bi-house-door-fill'></Link></li>
           <li><Link to="/questions">Questions</Link></li>
+          <li><Link to="/login">Login</Link></li>
         </ul>
       </div>
     </section>
@@ -19,7 +20,7 @@ export const PrivateNavbar = () => (
   <nav>
     <section>
       <div className="nav-wrapper">
-        <a href="#" className="brand-logo"><img src="LogoSofkaOverFlow.png" alt="logo" width="150px" /></a>
+        <a href="#"><img src="LogoSofkaOverFlow.png" alt="logo" width="110px" /></a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to="/" className='grey-text text-lighten-3 bi-house-door-fill'></Link></li>
           <li><Link to="/questions">Questions</Link></li>
