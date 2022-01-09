@@ -2,8 +2,10 @@ package co.com.sofka.questions.usecases;
 
 import co.com.sofka.questions.collections.Answer;
 import co.com.sofka.questions.collections.Question;
+import co.com.sofka.questions.collections.User;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
+import co.com.sofka.questions.model.UserDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -18,7 +20,18 @@ public class MapperUtils {
             answer.setQuestionId(updateAnswer.getQuestionId());
             answer.setUserId(updateAnswer.getUserId());
             answer.setAnswer(updateAnswer.getAnswer());
+            answer.setUserPhotoURL(updateAnswer.getUserPhotoURL());
             return answer;
+        };
+    }
+
+    public Function<UserDTO, User> mapperToUser(String id) {
+        return updateUser -> {
+            var user = new User();
+            user.setId(id);
+            user.setName(updateUser.getName());
+            user.setPhotoUrl(updateUser.getPhotoUrl());
+            return user;
         };
     }
 
@@ -35,6 +48,7 @@ public class MapperUtils {
             question.setNumOfReviews(updateQuestion.getNumOfReviews());
             question.setUserReviews(updateQuestion.getUserReviews());
             question.setUserEmail(updateQuestion.getUserEmail());
+            question.setUserPhotoURL(updateQuestion.getUserPhotoURL());
             return question;
         };
     }
@@ -49,7 +63,8 @@ public class MapperUtils {
                 entity.getNumOfReviews(),
                 entity.getSumReviewsScores(),
                 entity.getUserReviews(),
-                entity.getUserEmail()
+                entity.getUserEmail(),
+                entity.getUserPhotoURL()
         );
     }
 
@@ -58,7 +73,17 @@ public class MapperUtils {
                 entity.getId(),
                 entity.getQuestionId(),
                 entity.getUserId(),
-                entity.getAnswer()
+                entity.getAnswer(),
+                entity.getUserPhotoURL()
+        );
+    }
+
+    public Function<User, UserDTO> mapEntityToUser() {
+        return entity -> new UserDTO(
+                entity.getId(),
+                entity.getName(),
+                entity.getPhotoUrl()
         );
     }
 }
+

@@ -19,6 +19,15 @@ public class Question {
     private Integer numOfReviews = 0;
     private Integer sumReviewsScores = 0;
     private List<String> userReviews = new ArrayList<>();
+    private String userPhotoURL;
+
+    public String getUserPhotoURL() {
+        return userPhotoURL;
+    }
+
+    public void setUserPhotoURL(String userPhotoURL) {
+        this.userPhotoURL = userPhotoURL;
+    }
 
     public String getUserEmail() {
         return userEmail;

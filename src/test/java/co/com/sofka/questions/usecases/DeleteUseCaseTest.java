@@ -24,7 +24,7 @@ class DeleteUseCaseTest {
     @Test
     void deleteAnswerTest(){
 
-        var answerDto = new AnswerDTO("123", "abc", "¿Cual es el hueso más largo del cuerpo?", "Femur");
+        var answerDto = new AnswerDTO("123", "abc", "¿Cual es el hueso más largo del cuerpo?", "Femur", "foto");
 
         Mockito.when(answerRepository.deleteById(answerDto.getId())).thenReturn(Mono.empty());
 
@@ -32,6 +32,4 @@ class DeleteUseCaseTest {
 
         Assertions.assertEquals(response.block(), Mono.empty());
     }
-
-
 }

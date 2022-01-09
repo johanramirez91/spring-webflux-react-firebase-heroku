@@ -22,6 +22,7 @@ public class QuestionDTO {
     private Integer sumReviewScores = 0;
     private List<String> userReviews = new ArrayList<>();
     private String userEmail;
+    private String userPhotoURL;
 
 
     public QuestionDTO() {
@@ -37,7 +38,8 @@ public class QuestionDTO {
     }
 
     public QuestionDTO(String id, String userId, String question, String type, String category,
-                       Integer numOfReviews, Integer sumReviewScores, List<String> userReviews, String userEmail) {
+                       Integer numOfReviews, Integer sumReviewScores, List<String> userReviews,
+                       String userEmail, String userPhotoURL) {
         this.id = id;
         this.userId = userId;
         this.question = question;
@@ -47,6 +49,15 @@ public class QuestionDTO {
         this.sumReviewScores = sumReviewScores;
         this.userReviews = userReviews;
         this.userEmail = userEmail;
+        this.userPhotoURL = userPhotoURL;
+    }
+
+    public String getUserPhotoURL() {
+        return userPhotoURL;
+    }
+
+    public void setUserPhotoURL(String userPhotoURL) {
+        this.userPhotoURL = userPhotoURL;
     }
 
     public String getId() {

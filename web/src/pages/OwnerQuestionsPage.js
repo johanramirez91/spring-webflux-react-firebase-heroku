@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import { fetchOwnerQuestions, deleteQuestion } from '../actions/questionActions'
 import { Question } from '../components/Question'
 
-const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId }) => {
+const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId, photoURL, name }) => {
 
     useEffect(() => {
         dispatch(fetchOwnerQuestions(userId))
@@ -59,7 +59,9 @@ const mapStateToProps = state => ({
     questions: state.question.questions,
     hasErrors: state.question.hasErrors,
     redirect: state.question.redirect,
-    userId: state.auth.uid
+    userId: state.auth.uid,
+    photoURL: state.auth.photoURL,
+    name: state.auth.displayName
 })
 
 export default connect(mapStateToProps)(OwnerQuestionsPage)

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Question } from '../components/Question';
 import { InputText } from "../components/InputText";
 
-const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, userId }) => {
+const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, userId, photoURL, name }) => {
 
     const [content, setContent] = useState('');
     const { id } = match.params
@@ -23,7 +23,9 @@ const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, use
         const data = {
             userId,
             questionId: id,
-            answer: content
+            answer: content,
+            userPhotoURL: photoURL,
+            name: name
         }
         validateInput(data) && dispatch(postAnswer(data));
     };
@@ -41,7 +43,6 @@ const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, use
     const renderQuestion = () => {
         if (loading.question) return <p>Loading question...</p>
         if (hasErrors.question) return <p>Unable to display question.</p>
-
         return <Question question={question} />
     }
 
@@ -69,7 +70,9 @@ const mapStateToProps = state => ({
     redirect: state.question.redirect,
     question: state.question.question,
     hasErrors: state.question.hasErrors,
-    userId: state.auth.uid
+    userId: state.auth.uid,
+    photoURL: state.auth.photoURL,
+    name: state.auth.displayName
 })
 
 export default connect(mapStateToProps)(FormPage)

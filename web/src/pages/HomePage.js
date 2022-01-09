@@ -8,11 +8,11 @@ const HomePage = ({ children }) => (
     <div>
       {children}
     </div>
-    <p>Welcome to....</p>
-    <div className='container-image'>
-      <img src="LogoSofkaOverFlow.png" alt="home image" />
+    <p className='indigo-text'>Welcome to....</p>
+    <div className='container-img'>
+      <img src="LogoSofkaOverFlow.png" alt="logo" />
       <br />
-      <p>The question and answer app.</p>
+      <p className='indigo-text'>The question and answer app.</p>
       <hr />
     </div>
     <Link to="/questions" className="waves-effect orange darken-2 btn white-text">

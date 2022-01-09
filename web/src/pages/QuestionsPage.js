@@ -34,7 +34,9 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
             <h2>Questions</h2>
             <form className="form-search">
                 <input type="text" onChange={handleSearch} placeholder="Buscar..." />
-                <Link to={`/question/${goTOVariable}`}><input style={{ display: 'none' }} type="submit" value="search" /></Link>
+                <Link to={`/question/${goTOVariable}`}>
+                    <input style={{ display: 'none' }} type="submit" value="search" />
+                </Link>
             </form>
             {renderQuestions()}
         </section>
@@ -45,6 +47,7 @@ const mapStateToProps = state => ({
     loading: state.question.loading,
     questions: state.question.questions,
     hasErrors: state.question.hasErrors,
+    redirect: state.question.redirect,
 })
 
 export default connect(mapStateToProps)(QuestionsPage)

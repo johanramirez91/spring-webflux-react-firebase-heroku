@@ -4,7 +4,7 @@ import { postQuestion } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import { InputText } from "../components/InputText";
 
-const FormPage = ({ dispatch, loading, redirect, userId, useEmail }) => {
+const FormPage = ({ dispatch, loading, redirect, userId, useEmail, photoURL, name }) => {
 
     const [formState, setFormState] = useState({
         type: 'OPEN (LONG OPEN BOX)',
@@ -20,7 +20,9 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail }) => {
             ...formState,
             userId,
             question: content,
-            useEmail
+            useEmail,
+            userPhotoURL: photoURL,
+            name: name
         }
         validateInput(data) && dispatch(postQuestion(data));
     }
@@ -87,7 +89,9 @@ const mapStateToProps = state => ({
     redirect: state.question.redirect,
     hasErrors: state.question.hasErrors,
     userId: state.auth.uid,
-    userEmail: state.auth.email
+    userEmail: state.auth.email,
+    photoURL: state.auth.photoURL,
+    name: state.auth.displayName
 })
 
 export default connect(mapStateToProps)(FormPage)

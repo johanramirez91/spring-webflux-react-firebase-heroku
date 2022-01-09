@@ -142,3 +142,27 @@ export function deleteAnswer(id) {
     }
 }
 
+export function postUser(user) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            const response = await fetch(`${URL_BASE}/createUser`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                }
+            )
+            const id = await response.text()
+            dispatch(success({
+                redirect: `/user/${id}`
+            }));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+

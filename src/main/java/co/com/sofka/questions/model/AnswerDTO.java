@@ -15,16 +15,26 @@ public class AnswerDTO {
     @NotBlank
     private String answer;
     private Integer position;
+    private String userPhotoURL;
 
     public AnswerDTO() {
 
     }
-
-    public AnswerDTO(String id, @NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+    
+    public AnswerDTO(String id, @NotBlank String questionId, @NotBlank String userId, @NotBlank String answer, String userPhotoURL) {
         this.id = id;
         this.userId = userId;
         this.questionId = questionId;
         this.answer = answer;
+        this.userPhotoURL = userPhotoURL;
+    }
+
+    public String getUserPhotoURL() {
+        return userPhotoURL;
+    }
+
+    public void setUserPhotoURL(String userPhotoURL) {
+        this.userPhotoURL = userPhotoURL;
     }
 
     public String getId() {

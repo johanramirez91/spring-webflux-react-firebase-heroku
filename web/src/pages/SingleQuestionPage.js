@@ -14,9 +14,13 @@ const SingleQuestionPage = ({
   hasErrors,
   loading,
   redirect,
-  userId
+  userId,
+  photoURL,
+  name
 }) => {
+
   const { id } = match.params
+
   useEffect(() => {
     dispatch(fetchQuestion(id))
   }, [dispatch, redirect, id])
@@ -55,8 +59,7 @@ const SingleQuestionPage = ({
   return (
     <section>
       {renderQuestion()}
-      {userId && <Link to={"/answer/" + id} className="waves-effect orange darken-2 btn white-text right">
-        Reply
+      {userId && <Link to={"/answer/" + id} className="waves-effect orange darken-2 btn white-text right bi bi-reply-fill">  Reply
       </Link>}
 
       <h2>Answers</h2>
@@ -70,7 +73,9 @@ const mapStateToProps = state => ({
   loading: state.question.loading,
   hasErrors: state.question.hasErrors,
   redirect: state.question.redirect,
-  userId: state.auth.uid
+  userId: state.auth.uid,
+  photoURL: state.auth.photoURL,
+  name: state.auth.displayName
 })
 
 export default connect(mapStateToProps)(SingleQuestionPage)

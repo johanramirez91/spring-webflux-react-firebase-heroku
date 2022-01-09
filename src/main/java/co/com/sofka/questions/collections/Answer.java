@@ -11,6 +11,15 @@ public class Answer {
     private String questionId;
     private String answer;
     private Integer position;
+    private String userPhotoURL;
+
+    public String getUserPhotoURL() {
+        return userPhotoURL;
+    }
+
+    public void setUserPhotoURL(String userPhotoURL) {
+        this.userPhotoURL = userPhotoURL;
+    }
 
     public Integer getPosition() {
         return position;
