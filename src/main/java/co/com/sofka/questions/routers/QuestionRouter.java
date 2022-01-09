@@ -123,4 +123,16 @@ public class QuestionRouter {
                                         .bodyValue(result)))
         );
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> update(UpdateQuestionUseCase updateQuestionUseCase) {
+        return route(PUT("/edit").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(QuestionDTO.class)
+                        .flatMap(questionDTO -> updateQuestionUseCase.apply(questionDTO)
+                                .flatMap(result -> ServerResponse.ok()
+                                        .contentType(MediaType.APPLICATION_JSON)
+                                        .bodyValue(result))
+                        )
+        );
+    }
 }

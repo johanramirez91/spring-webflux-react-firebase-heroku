@@ -183,3 +183,8 @@ footer {
   border: none;
   border-radius: 6px;
 }
+
+.icon-rating {
+  padding: 20px;
+  font-size: 30px;
+}
