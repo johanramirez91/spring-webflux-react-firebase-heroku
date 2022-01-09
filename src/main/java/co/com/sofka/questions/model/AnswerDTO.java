@@ -20,7 +20,7 @@ public class AnswerDTO {
     public AnswerDTO() {
 
     }
-    
+
     public AnswerDTO(String id, @NotBlank String questionId, @NotBlank String userId, @NotBlank String answer, String userPhotoURL) {
         this.id = id;
         this.userId = userId;
