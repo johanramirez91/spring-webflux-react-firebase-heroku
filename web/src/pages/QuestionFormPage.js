@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
 import { postQuestion } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import { InputText } from "../components/InputText";
@@ -28,7 +29,13 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail, photoURL, nam
     }
 
     const validateInput = ({ question }) => {
-        if (question.length && question.length <= 200) {
+        if (question.length && question.length <= 300) {
+            swal({
+                title: "Good!",
+                text: "We hope you solve your doubt",
+                icon: "success",
+                button: "Go!",
+            });
             return true;
         }
         return false;

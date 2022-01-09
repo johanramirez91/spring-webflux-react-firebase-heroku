@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import swal from "sweetalert";
 import { fetchQuestion, postAnswer } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import { Question } from '../components/Question';
@@ -12,9 +13,21 @@ const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, use
     const history = useHistory();
 
     const validateInput = ({ answer }) => {
-        if (answer.length && answer.length <= 200) {
+        if (answer.length && answer.length <= 500) {
+            swal({
+                title: "Good job!",
+                text: "Thank you for contribute",
+                icon: "success",
+                button: "Ok!",
+            });
             return true;
         }
+        swal({
+            title: "Oppsss!",
+            text: "Your answer is too long",
+            icon: "warning",
+            button: "Aww yiss!",
+        });
         return false;
     }
 

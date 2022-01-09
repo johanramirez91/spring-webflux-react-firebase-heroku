@@ -16,13 +16,13 @@ export const Footer = () => {
                     <ul>
                         <li>
                             <a className="white-text text-lighten-3 bi bi-github m-3" style={{ "fontSize": "25px" }}
-                                href="httpwhitegithub.com/johanramirez91/spring-webflux-react-firebase-heroku"
+                                href="https://github.com/johanramirez91/spring-webflux-react-firebase-heroku"
                                 target="_bwhite" rel="noopener noreferrer"></a>
                             <a className="white-text text-lighten-3 bi bi-linkedin" style={{ "fontSize": "25px" }}
-                                href="httpwhitewww.linkedin.com/company/sofka-technologies/"
+                                href="https://www.linkedin.com/company/sofka-technologies/"
                                 target="_bwhite" rel="noopener noreferrer"></a>
                             <a className="white-text text-lighten-3 bi bi-youtube m-3" style={{ "fontSize": "25px" }}
-                                href="httpwhitewww.youtube.com/watch?v=sAMMpZDKygE&t=2s"
+                                href="https://www.youtube.com/watch?v=sAMMpZDKygE&t=2s"
                                 target="_bwhite" rel="noopener noreferrer"></a>
                             <a className="white-text text-lighten-3 bi bi-instagram" style={{ "fontSize": "25px" }}
                                 href="https://www.instagram.com/sofka_technologies/?hl=es"
