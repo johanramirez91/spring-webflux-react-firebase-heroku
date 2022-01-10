@@ -4,7 +4,7 @@ export const initialState = {
   loading: false,
   hasErrors: false,
   questions: [],
-  question: {},
+  question: { userReviews: [] },
   redirect: null
 }
 

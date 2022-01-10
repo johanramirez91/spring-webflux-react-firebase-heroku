@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import { fetchOwnerQuestions, deleteQuestion } from '../actions/questionActions'
 import { Question } from '../components/Question'
 
-const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId, photoURL, name }) => {
+const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect, userId }) => {
 
     useEffect(() => {
         dispatch(fetchOwnerQuestions(userId))
@@ -39,10 +39,12 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
         if (loading) return <p>Loading questions...</p>
         if (hasErrors) return <p>Unable to display questions.</p>
 
-        return questions.map(question => <Question
-            key={question.id}
-            question={question}
-            excerpt onDelete={onDelete} />)
+        return questions.map(question =>
+            <Question
+                key={question.id}
+                question={question}
+                excerpt onDelete={onDelete}
+            />)
     }
 
     return (

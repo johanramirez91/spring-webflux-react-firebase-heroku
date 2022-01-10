@@ -17,7 +17,7 @@ public class Question {
     private String type;
     private String category;
     private Integer numOfReviews = 0;
-    private Integer sumReviewsScores = 0;
+    private Integer sumReviewScores = 0;
     private List<String> userReviews = new ArrayList<>();
     private String userPhotoURL;
 
@@ -45,12 +45,12 @@ public class Question {
         this.numOfReviews = numOfReviews;
     }
 
-    public Integer getSumReviewsScores() {
-        return sumReviewsScores;
+    public Integer getSumReviewScores() {
+        return sumReviewScores;
     }
 
-    public void setSumReviewsScores(Integer sumReviewsScores) {
-        this.sumReviewsScores = sumReviewsScores;
+    public void setSumReviewScores(Integer sumReviewScores) {
+        this.sumReviewScores = sumReviewScores;
     }
 
     public List<String> getUserReviews() {

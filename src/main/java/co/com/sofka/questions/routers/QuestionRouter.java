@@ -3,7 +3,6 @@ package co.com.sofka.questions.routers;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.model.ReviewDTO;
-import co.com.sofka.questions.model.UserDTO;
 import co.com.sofka.questions.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -102,18 +101,6 @@ public class QuestionRouter {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> createUser(CreateUserUseCase createUserUseCase){
-        Function<UserDTO, Mono<ServerResponse>> executor = userDTO ->  createUserUseCase.apply(userDTO)
-                .flatMap(result -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .bodyValue(result));
-
-        return route(
-                POST("/createUser").and(accept(MediaType.APPLICATION_JSON)),
-                request -> request.bodyToMono(UserDTO.class).flatMap(executor));
-    }
-
-    @Bean
     public RouterFunction<ServerResponse> addReview(AddReviewUseCase addReviewUseCase){
         return route(PUT("/addreview").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(ReviewDTO.class)
@@ -121,6 +108,7 @@ public class QuestionRouter {
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
                                         .bodyValue(result)))
+                        .onErrorResume(error -> ServerResponse.badRequest().body(error.getCause(), String.class))
         );
     }
 
@@ -135,4 +123,5 @@ public class QuestionRouter {
                         )
         );
     }
+
 }

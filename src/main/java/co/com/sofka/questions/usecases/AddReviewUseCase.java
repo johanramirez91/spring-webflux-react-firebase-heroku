@@ -21,14 +21,15 @@ public class AddReviewUseCase {
         this.updateQuestionUseCase = updateQuestionUseCase;
     }
 
-    public Mono<QuestionDTO> addReview(ReviewDTO reviewDTO) {
-        return questionRepository.findById(reviewDTO.getQuestionId())
-                .flatMap(question -> {
-                    question.setNumOfReviews(question.getNumOfReviews() + 1);
-                    question.setSumReviewsScores(question.getSumReviewsScores() + Integer.parseInt(reviewDTO.getScore()));
-                    question.getUserReviews().add(reviewDTO.getUserId());
+    public Mono<QuestionDTO> addReview(ReviewDTO review) {
+        return questionRepository.findById(review.getQuestionId()).flatMap(
+                question -> {
+                    question.setNumOfReviews(question.getNumOfReviews()+1);
+                    question.setSumReviewScores(question.getSumReviewScores()+Integer.parseInt(review.getScore()));
+                    question.getUserReviews().add(review.getUserId());
                     question.setUserReviews(question.getUserReviews());
                     return updateQuestionUseCase.apply(mapperUtils.mapEntityToQuestion().apply(question));
-                });
+                }
+        );
     }
 }

@@ -21,6 +21,7 @@ import AnswerFormPage from './pages/AnswerFormPage'
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Footer } from './components/Footer';
+import UpdateQuestionPage from './pages/UpdateQuestionPage'
 
 
 const auth = firebase.auth();
@@ -46,6 +47,7 @@ const App = ({ dispatch }) => {
             <Route exact path="/list" component={OwnerQuestionsPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
+            <Route exact path="/updateQuestion/:id" component={UpdateQuestionPage} />
             <Redirect to="/" />
           </Switch>
           <Footer />
@@ -80,7 +82,6 @@ const App = ({ dispatch }) => {
   )
 }
 
-
 function SignOut({ dispatch }) {
   return (
     auth.currentUser && (
@@ -97,3 +98,4 @@ function SignOut({ dispatch }) {
 }
 
 export default App
+export { auth }

@@ -3,7 +3,6 @@ package co.com.sofka.questions.model;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
-import java.util.Optional;
 
 public class AnswerDTO {
 
@@ -14,7 +13,6 @@ public class AnswerDTO {
     private String questionId;
     @NotBlank
     private String answer;
-    private Integer position;
     private String userPhotoURL;
 
     public AnswerDTO() {
@@ -44,15 +42,6 @@ public class AnswerDTO {
     public void setId(String id) {
         this.id = id;
     }
-
-    public Integer getPosition() {
-        return Optional.ofNullable(position).orElse(1);
-    }
-
-    public void setPosition(Integer position) {
-        this.position = position;
-    }
-
 
     public String getUserId() {
         return userId;

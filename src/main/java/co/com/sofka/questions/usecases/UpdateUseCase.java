@@ -13,6 +13,7 @@ import java.util.Objects;
 @Service
 @Validated
 public class UpdateUseCase implements SaveQuestion {
+
     private final QuestionRepository questionRepository;
     private final MapperUtils mapperUtils;
 

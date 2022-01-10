@@ -6,8 +6,8 @@ import co.com.sofka.questions.model.ReviewDTO;
 import co.com.sofka.questions.reposioties.QuestionRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import reactor.core.publisher.Mono;
@@ -17,65 +17,55 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
 class AddReviewUseCaseTest {
-
-    @MockBean
-    QuestionRepository questionRepository;
-
-    @MockBean
-    UpdateQuestionUseCase updateQuestionUseCase;
 
     @SpyBean
     AddReviewUseCase addReviewUseCase;
 
-    @Test
-    void setAddReviewTest(){
+    @Mock
+    UpdateQuestionUseCase updateQuestionUseCase;
 
-        //Arrange
-        List<String> list = new ArrayList<>();
+    @MockBean
+    QuestionRepository questionRepository;
+
+    @Test
+    void answerTest(){
+        List<String> user = new ArrayList<>();
+        user.add("idxxx");
+        var question =  new Question();
+        question.setId("questionId");
+        question.setUserId("xxxx-xxxx");
+        question.setUserEmail("test@gmail.com");
+        question.setQuestion("¿Que es java?");
+        question.setType("OPEN (LONG OPEN BOX)");
+        question.setCategory("TECHNOLOGY AND COMPUTER");
+        question.setNumOfReviews(1);
+        question.setSumReviewScores(2);
+        question.setUserReviews(user);
+
         var questionDto = new QuestionDTO(
-                "123",
-                "123",
-                "¿Qué es un Flux?",
-                "OPEN (LONG OPEN BOX)",
-                "SOFTWARE DEVELOPMENT",
-                6,
-                1,
-                list,
-                "johan911019@gmail.com",
-                "https://www.url.com/image.png"
+                "abc123",
+                "¿Qué es pyhton?",
+                "TECHNOLOGY",
+                "TECHNOLOGY",
+                "johan911019@hotmail.com"
         );
 
-        var question = new Question();
-        question.setId("123");
-        question.setUserId("123");
-        question.setQuestion("¿Qué es un Flux?");
-        question.setType("OPEN (LONG OPEN BOX)");
-        question.setCategory("SOFTWARE DEVELOPMENT");
-        question.setNumOfReviews(1);
-        question.setSumReviewsScores(1);
-        question.setUserReviews(list);
-        question.setUserEmail("johan911019@gmail.com");
-        question.setUserPhotoURL("https://www.url.com/image.png");
+        Mono<Question> questionMono = Mono.just(question);
 
-        Mockito.when(questionRepository.findById(Mockito.anyString())).thenReturn(Mono.just(question));
+        ReviewDTO review = new ReviewDTO();
+        review.setUserId("xxxx-xxxx");
+        review.setQuestionId("questionId");
+        review.setScore("2");
+
+        Mockito.when(questionRepository.findById(Mockito.any(String.class))).thenReturn(Mono.just(question));
         Mockito.when(updateQuestionUseCase.apply(questionDto)).thenReturn(Mono.just(questionDto));
         Mockito.when(questionRepository.save(Mockito.any(Question.class))).thenReturn(Mono.just(question));
 
-        //Act
-        var response = new ReviewDTO();
-        response.setUserId("123");
-        response.setScore("6");
-        response.setQuestionId("123");
-        var result = addReviewUseCase.addReview(response);
-
-        //Assert
-        Assertions.assertEquals(result.block().getId(), question.getId());
-        Assertions.assertEquals(result.block().getCategory(), question.getCategory());
-        Assertions.assertEquals(result.block().getQuestion(), question.getQuestion());
-        Assertions.assertEquals(result.block().getUserEmail(), question.getUserEmail());
-        Assertions.assertEquals(result.block().getNumOfReviews(), question.getNumOfReviews());
+        var resultQuestionDTO = addReviewUseCase.addReview(review);
+        assert resultQuestionDTO != null;
+        Assertions.assertEquals(resultQuestionDTO.block().getId(), question.getId());
+        Assertions.assertEquals(resultQuestionDTO.block().getCategory(), question.getCategory());
+        Assertions.assertEquals(resultQuestionDTO.block().getQuestion(), question.getQuestion());
     }
-
 }

@@ -85,7 +85,6 @@ const mapStateToProps = state => ({
     hasErrors: state.question.hasErrors,
     userId: state.auth.uid,
     photoURL: state.auth.photoURL,
-    name: state.auth.displayName
 })
 
 export default connect(mapStateToProps)(FormPage)

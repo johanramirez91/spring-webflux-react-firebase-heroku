@@ -1,4 +1,4 @@
-const URL_BASE = 'http://localhost:8080';
+const URL_BASE = 'http://localhost:8080'; // Cambiar a hEROKU
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
@@ -142,30 +142,6 @@ export function deleteAnswer(id) {
     }
 }
 
-export function postUser(user) {
-    return async dispatch => {
-        dispatch(loading())
-        try {
-            const response = await fetch(`${URL_BASE}/createUser`,
-                {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(user)
-                }
-            )
-            const id = await response.text()
-            dispatch(success({
-                redirect: `/user/${id}`
-            }));
-        } catch (error) {
-            dispatch(failure())
-        }
-    }
-}
-
 export function postReview(score, id, user) {
     return async (dispatch) => {
         dispatch(loading());
@@ -184,4 +160,51 @@ export function postReview(score, id, user) {
             dispatch(failure());
         }
     };
+}
+export function findByCategory(category) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            const response = await fetch(`${URL_BASE}/findCategory/${category}`)
+            const data = await response.json()
+            dispatch(success({ question: data, redirect: null }))
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
+export function updateQuestion(question) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            const response = await fetch(`${URL_BASE}/edit`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(question)
+                }
+            )
+            const id = await response.text()
+            dispatch(success({ redirect: `/question/${id}` }))
+        } catch (error) {
+            console.log("ERROR", error.message);
+            dispatch(failure())
+        }
+    }
+}
+
+export function redirectToNew() {
+    return async dispatch => {
+        dispatch(success({ redirect: `/new` }));
+    }
+}
+
+export function redirectToUpdate(id) {
+    return async dispatch => {
+        dispatch(success({ redirect: `/updateQuestion/${id}` }));
+    }
 }

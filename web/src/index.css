@@ -52,6 +52,10 @@ section h2 {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+section-review {
+  margin-bottom: 30px;
+}
+
 input,
 select,
 textarea {
@@ -93,7 +97,7 @@ footer {
   background: #f0f0f0;
   border-radius: 6px;
   padding: 1rem 1.5rem;
-  margin: 1rem 1rem;
+  margin: 1rem 2rem;
 }
 
 .button {
