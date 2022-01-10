@@ -1,10 +1,10 @@
 package co.com.sofka.questions.model;
 
-public class ReviewDTO {
+public class Review {
 
     private String userId;
-    private String questionId;
     private String score;
+    private String questionId;
 
     public String getUserId() {
         return userId;
@@ -14,19 +14,19 @@ public class ReviewDTO {
         this.userId = userId;
     }
 
-    public String getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(String questionId) {
-        this.questionId = questionId;
-    }
-
     public String getScore() {
         return score;
     }
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public String getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(String questionId) {
+        this.questionId = questionId;
     }
 }

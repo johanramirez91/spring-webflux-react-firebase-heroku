@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 @Service
 @Validated
 public class CreateUseCase implements SaveQuestion {
+
     private final QuestionRepository questionRepository;
     private final MapperUtils mapperUtils;
 

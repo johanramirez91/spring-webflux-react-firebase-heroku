@@ -17,7 +17,7 @@ public class AddAnswerUseCase implements SaveAnswer {
 
     @Autowired
     private final SendEmailService emailService;
-
+    @Autowired
     private final AnswerRepository answerRepository;
     private final MapperUtils mapperUtils;
     private final GetUseCase getUseCase;
@@ -37,8 +37,8 @@ public class AddAnswerUseCase implements SaveAnswer {
                             question.getAnswers().add(answerDTO);
                             emailService.sendEmail(
                                     question.getUserEmail(),
-                                    "Alguien respondió tu pregunta: " + question.getQuestion(),
-                                    "La respuesta es: \n" + answer.getAnswer());
+                                    "Han respondido tu pregunta : " + question.getQuestion(),
+                                    "Pregunta : \n" + answer.getAnswer());
                             return question;
                         })
         );

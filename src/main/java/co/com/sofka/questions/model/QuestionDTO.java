@@ -1,5 +1,6 @@
 package co.com.sofka.questions.model;
 
+
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +8,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class QuestionDTO {
-
     private String id;
     @NotBlank
     private String userId;
@@ -38,15 +38,15 @@ public class QuestionDTO {
     }
 
     public QuestionDTO(String id, String userId, String question, String type, String category,
-                       Integer numOfReviews, Integer sumReviewScores, List<String> userReviews,
+                       Integer numberOfReviews, Integer sumOfReviewScores, List<String> userReviews,
                        String userEmail, String userPhotoURL) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
-        this.numOfReviews = numOfReviews;
-        this.sumReviewScores = sumReviewScores;
+        this.numOfReviews = numberOfReviews;
+        this.sumReviewScores = sumOfReviewScores;
         this.userReviews = userReviews;
         this.userEmail = userEmail;
         this.userPhotoURL = userPhotoURL;
@@ -58,6 +58,15 @@ public class QuestionDTO {
 
     public void setUserPhotoURL(String userPhotoURL) {
         this.userPhotoURL = userPhotoURL;
+    }
+
+    public List<AnswerDTO> getAnswers() {
+        this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
+        return answers;
+    }
+
+    public void setAnswers(List<AnswerDTO> answers) {
+        this.answers = answers;
     }
 
     public String getId() {
@@ -98,15 +107,6 @@ public class QuestionDTO {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public List<AnswerDTO> getAnswers() {
-        this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
-        return answers;
-    }
-
-    public void setAnswers(List<AnswerDTO> answers) {
-        this.answers = answers;
     }
 
     public Integer getNumOfReviews() {
@@ -154,6 +154,7 @@ public class QuestionDTO {
                 ", sumReviewScores=" + sumReviewScores +
                 ", userReviews=" + userReviews +
                 ", userEmail='" + userEmail + '\'' +
+                ", userPhotoURL='" + userPhotoURL + '\'' +
                 '}';
     }
 
@@ -169,6 +170,4 @@ public class QuestionDTO {
     public int hashCode() {
         return Objects.hash(id);
     }
-
-
 }

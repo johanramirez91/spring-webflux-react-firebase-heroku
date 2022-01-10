@@ -18,6 +18,7 @@ public class SendEmailService {
     }
 
     public Mono<String> sendEmail(String to, String subject, String body) {
+
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
         simpleMailMessage.setFrom("johan911019@gmail.com");

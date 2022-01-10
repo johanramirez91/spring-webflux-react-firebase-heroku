@@ -2,7 +2,7 @@ package co.com.sofka.questions.routers;
 
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
-import co.com.sofka.questions.model.ReviewDTO;
+import co.com.sofka.questions.model.Review;
 import co.com.sofka.questions.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -76,7 +76,7 @@ public class QuestionRouter {
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
                                         .bodyValue(result))
-                        )
+                        ).onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
         );
     }
 
@@ -101,14 +101,14 @@ public class QuestionRouter {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> addReview(AddReviewUseCase addReviewUseCase){
+    public RouterFunction<ServerResponse> addReview(AddReviewUseCase addReviewUseCase) {
         return route(PUT("/addreview").and(accept(MediaType.APPLICATION_JSON)),
-                request -> request.bodyToMono(ReviewDTO.class)
+                request -> request.bodyToMono(Review.class)
                         .flatMap(review -> addReviewUseCase.addReview(review)
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
-                                        .bodyValue(result)))
-                        .onErrorResume(error -> ServerResponse.badRequest().body(error.getCause(), String.class))
+                                        .bodyValue(result))
+                        )
         );
     }
 

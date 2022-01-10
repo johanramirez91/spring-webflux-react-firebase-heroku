@@ -11,10 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import reactor.core.publisher.Mono;
 
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class GetUseCaseTest {
 

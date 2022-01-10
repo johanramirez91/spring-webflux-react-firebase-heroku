@@ -14,8 +14,8 @@ public class MapperUtils {
     public Function<AnswerDTO, Answer> mapperToAnswer() {
         return updateAnswer -> {
             var answer = new Answer();
-            answer.setQuestionId(updateAnswer.getQuestionId());
             answer.setUserId(updateAnswer.getUserId());
+            answer.setQuestionId(updateAnswer.getQuestionId());
             answer.setAnswer(updateAnswer.getAnswer());
             answer.setUserPhotoURL(updateAnswer.getUserPhotoURL());
             return answer;
@@ -58,8 +58,8 @@ public class MapperUtils {
     public Function<Answer, AnswerDTO> mapEntityToAnswer() {
         return entity -> new AnswerDTO(
                 entity.getId(),
-                entity.getQuestionId(),
                 entity.getUserId(),
+                entity.getQuestionId(),
                 entity.getAnswer(),
                 entity.getUserPhotoURL()
         );

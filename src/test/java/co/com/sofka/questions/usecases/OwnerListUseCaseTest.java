@@ -11,8 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import reactor.core.publisher.Flux;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class OwnerListUseCaseTest {
 

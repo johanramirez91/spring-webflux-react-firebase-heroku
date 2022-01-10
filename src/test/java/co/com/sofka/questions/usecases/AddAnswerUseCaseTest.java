@@ -15,29 +15,31 @@ import reactor.core.publisher.Mono;
 @SpringBootTest
 class AddAnswerUseCaseTest {
 
-    @MockBean
-    private GetUseCase getUseCase;
-
-    @MockBean
-    private AnswerRepository repository;
-
     @SpyBean
-    private AddAnswerUseCase addAnswerUseCase;
+    AddAnswerUseCase addAnswerUseCase;
+
+    @MockBean
+    GetUseCase getUseCase;
+
+    @MockBean
+    AnswerRepository answerRepository;
+
 
     @Test
     void addAnswerTest() {
 
-        var questionDTO = new QuestionDTO("001","¿Test OK?","OPEN","TECHNOLOGY","johan911019@gmail");
-        var answerDTO = new AnswerDTO("aaa","123","001","test ok", "foto");
+        var questionDTO = new QuestionDTO("01","yy","test?","test","test@gmail");
+        var answerDTO = new AnswerDTO("xx","yy","u01","test", "www.imgrul.com");
 
         var answer = new Answer();
-        answer.setId("aaa");
-        answer.setQuestionId("123");
-        answer.setUserId("001");
-        answer.setAnswer("test ok");
+        answer.setId("xx");
+        answer.setQuestionId("yy");
+        answer.setUserId("01");
+        answer.setAnswer("test");
 
-        Mockito.when(repository.save(Mockito.any(Answer.class))).thenReturn(Mono.just(answer));
+        Mockito.when(answerRepository.save(Mockito.any(Answer.class))).thenReturn(Mono.just(answer));
         Mockito.when(getUseCase.apply(Mockito.anyString())).thenReturn(Mono.just(questionDTO));
+
 
         var resultDTO = addAnswerUseCase.apply(answerDTO);
         var resultQuestionDTO = resultDTO.block();
