@@ -23,3 +23,5 @@ siguiente enlace
 - Agregar un icono/logo a la aplicación
 
 - Calificar la pregunta con 3 caritas, feliz, satisfecho y triste
+
+![SofkaOF](https://user-images.githubusercontent.com/85029865/149006482-f423895e-941d-436d-ad73-3f96d61c10e3.png)
