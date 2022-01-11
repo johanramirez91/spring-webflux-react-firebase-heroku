@@ -15,6 +15,7 @@ public class AnswerDTO {
     private String answer;
     private String userPhotoURL;
 
+
     public AnswerDTO() {
 
     }

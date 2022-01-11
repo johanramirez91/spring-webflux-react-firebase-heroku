@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert";
 import { postQuestion } from '../actions/questionActions';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { InputText } from "../components/InputText";
 
-const FormPage = ({ dispatch, loading, redirect, userId, useEmail, photoURL, name }) => {
+const FormPage = ({ dispatch, loading, redirect, userId, photoURL, name }) => {
 
     const [formState, setFormState] = useState({
         type: 'OPEN (LONG OPEN BOX)',
@@ -14,6 +14,7 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail, photoURL, nam
 
     const [content, setContent] = useState('');
     const history = useHistory();
+    const user = useSelector(state => state.auth);
 
     const onSubmit = event => {
         event.preventDefault();
@@ -21,7 +22,7 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail, photoURL, nam
             ...formState,
             userId,
             question: content,
-            useEmail,
+            userEmail: user.email,
             userPhotoURL: photoURL,
             name: name
         }
@@ -92,13 +93,13 @@ const FormPage = ({ dispatch, loading, redirect, userId, useEmail, photoURL, nam
 }
 
 const mapStateToProps = state => ({
+    question: state.question.question,
     loading: state.question.loading,
-    redirect: state.question.redirect,
     hasErrors: state.question.hasErrors,
-    userId: state.auth.uid,
+    redirect: state.question.redirect,
     userEmail: state.auth.email,
+    userId: state.auth.uid,
     photoURL: state.auth.photoURL,
-    name: state.auth.displayName
 })
 
 export default connect(mapStateToProps)(FormPage)

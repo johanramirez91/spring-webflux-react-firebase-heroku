@@ -51,8 +51,7 @@ const SingleQuestionPage = ({
   }
 
   const onEdit = (question) => {
-
-    (question.answers && question.answers.length) ?
+    question.answers ? (
       swal({
         title: "Take care",
         text: "A new question will be created because this question alredy has answers",
@@ -63,7 +62,7 @@ const SingleQuestionPage = ({
         if (edit) {
           dispatch(redirectToNew());
         }
-      }) :
+      })) :
       dispatch(redirectToUpdate(question.id))
   }
 
@@ -80,10 +79,11 @@ const SingleQuestionPage = ({
   }
 
   const renderAnswers = () => {
-    return (question.answers && question.answers.length) ? question.answers.map(answer => (
+    return (question.answers) ? question.answers.map(answer => (
       <Answer key={answer.id} answer={answer} userId={userId} onDelete={onDelete} />
     )) : (<p>Empty answer!</p>);
   }
+
 
   return (
     <section>

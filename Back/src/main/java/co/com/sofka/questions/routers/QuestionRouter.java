@@ -75,8 +75,7 @@ public class QuestionRouter {
                         .flatMap(addAnswerDTO -> addAnswerUseCase.apply(addAnswerDTO)
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
-                                        .bodyValue(result))
-                        ).onErrorResume(throwable -> ServerResponse.badRequest().body(throwable.getMessage(), String.class))
+                                        .bodyValue(result)))
         );
     }
 
@@ -117,6 +116,18 @@ public class QuestionRouter {
         return route(PUT("/edit").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(QuestionDTO.class)
                         .flatMap(questionDTO -> updateQuestionUseCase.apply(questionDTO)
+                                .flatMap(result -> ServerResponse.ok()
+                                        .contentType(MediaType.APPLICATION_JSON)
+                                        .bodyValue(result))
+                        )
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> updateQuestion(UpdateUseCase updateUseCase) {
+        return route(POST("/update").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(QuestionDTO.class)
+                        .flatMap(questionDTO -> updateUseCase.apply(questionDTO)
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
                                         .bodyValue(result))

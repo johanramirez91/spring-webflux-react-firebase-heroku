@@ -57,15 +57,14 @@ function QuestionReview({ question, dispatch, loading, hasErrors, userEmail }) {
     )
 }
 
-const mapStateToProps = (state) => ({
-    loading: state.question.loading,
-    redirect: state.question.redirect,
+const mapStateToProps = state => ({
     question: state.question.question,
+    loading: state.question.loading,
     hasErrors: state.question.hasErrors,
-    userId: state.auth.uid,
+    redirect: state.question.redirect,
     userEmail: state.auth.email,
+    userId: state.auth.uid,
     photoURL: state.auth.photoURL,
-    name: state.auth.displayName
 })
 
 export default connect(mapStateToProps)(QuestionReview)

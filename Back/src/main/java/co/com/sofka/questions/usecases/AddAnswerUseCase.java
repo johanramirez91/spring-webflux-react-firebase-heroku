@@ -17,7 +17,6 @@ public class AddAnswerUseCase implements SaveAnswer {
 
     @Autowired
     private final SendEmailService emailService;
-    @Autowired
     private final AnswerRepository answerRepository;
     private final MapperUtils mapperUtils;
     private final GetUseCase getUseCase;

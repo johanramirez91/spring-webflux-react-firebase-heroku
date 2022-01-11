@@ -1,4 +1,4 @@
-const URL_BASE = 'http://localhost:8085'; // Cambiar a hEROKU
+const URL_BASE = 'https://sofkaoverflow.herokuapp.com';
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
@@ -161,6 +161,7 @@ export function postReview(score, id, user) {
         }
     };
 }
+
 export function findByCategory(category) {
     return async dispatch => {
         dispatch(loading())
@@ -178,7 +179,7 @@ export function updateQuestion(question) {
     return async dispatch => {
         dispatch(loading())
         try {
-            const response = await fetch(`${URL_BASE}/edit`,
+            const response = await fetch(`${URL_BASE}/update`,
                 {
                     method: 'POST',
                     mode: 'cors',

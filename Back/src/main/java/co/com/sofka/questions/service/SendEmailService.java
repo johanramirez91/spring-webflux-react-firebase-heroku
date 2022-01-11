@@ -1,11 +1,14 @@
 package co.com.sofka.questions.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 @Service
 @Validated
@@ -19,13 +22,20 @@ public class SendEmailService {
 
     public Mono<String> sendEmail(String to, String subject, String body) {
 
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        try {
+            MimeMessage message = javaMailSender.createMimeMessage();
+            message.setSubject(subject);
+            MimeMessageHelper helper;
+            helper = new MimeMessageHelper(message, true);
+            helper.setFrom("johan911019@gmail.com");
+            helper.setTo(to);
+            helper.setText(body, true);
+            javaMailSender.send(message);
 
-        simpleMailMessage.setFrom("johan911019@gmail.com");
-        simpleMailMessage.setTo(to);
-        simpleMailMessage.setSubject(subject);
-        simpleMailMessage.setText(body);
-        javaMailSender.send(simpleMailMessage);
-        return Mono.just("Email enviado!");
+        } catch (MessagingException exception){
+            exception.getMessage();
+        }
+
+        return Mono.just("Email sended!");
     }
 }

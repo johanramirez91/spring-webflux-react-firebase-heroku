@@ -98,4 +98,3 @@ function SignOut({ dispatch }) {
 }
 
 export default App
-export { auth }

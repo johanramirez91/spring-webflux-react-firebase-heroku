@@ -7,7 +7,7 @@ import { InputText } from '../components/InputText';
 
 
 
-const UpdateQuestionPage = ({ dispatch, loading, match, redirect, userId, useEmail, photoURL, question }) => {
+const UpdateQuestionPage = ({ dispatch, loading, match, redirect, userId, userEmail, photoURL, question }) => {
 
     const [formState, setFormState] = useState({
         type: 'OPEN (LONG OPEN BOX)',
@@ -28,7 +28,7 @@ const UpdateQuestionPage = ({ dispatch, loading, match, redirect, userId, useEma
             ...formState,
             userId,
             question: content,
-            useEmail,
+            userEmail,
             userPhotoURL: photoURL,
         }
         validateInput(data) && dispatch(updateQuestion(data));
@@ -106,8 +106,10 @@ const mapStateToProps = state => ({
     loading: state.question.loading,
     hasErrors: state.question.hasErrors,
     redirect: state.question.redirect,
+    userEmail: state.auth.email,
     userId: state.auth.uid,
     photoURL: state.auth.photoURL,
 })
 
 export default connect(mapStateToProps)(UpdateQuestionPage)
+

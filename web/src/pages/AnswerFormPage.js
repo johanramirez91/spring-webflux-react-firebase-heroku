@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Question } from '../components/Question';
 import { InputText } from "../components/InputText";
 
-const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, userId, photoURL, userEmail }) => {
+const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, userId, photoURL }) => {
 
     const [content, setContent] = useState('');
     const { id } = match.params
@@ -34,13 +34,11 @@ const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, use
     const onSubmit = event => {
         event.preventDefault();
         const data = {
-            userId,
             questionId: id,
+            userId: userId,
             answer: content,
             userPhotoURL: photoURL,
-            userEmail: userEmail
         }
-        console.log(data)
         validateInput(data) && dispatch(postAnswer(data));
     };
 

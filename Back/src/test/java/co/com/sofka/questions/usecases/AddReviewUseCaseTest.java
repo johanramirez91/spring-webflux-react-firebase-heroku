@@ -35,7 +35,8 @@ class AddReviewUseCaseTest {
         var questionDTO = new QuestionDTO(
                 "xxx", "yyy", "Que es un metodo?",
                 "OPEN (LONG OPEN BOX)", "SOFTWARE DEVELOPMENT",
-                1, 1, listParameter, "johan911019@gmail.com", "www.urlimg.com");
+                1, 1, listParameter,
+                "johan911019@gmail.com", "www.urlimg.com");
 
         var resource = new Question();
         resource.setId("xxx");
